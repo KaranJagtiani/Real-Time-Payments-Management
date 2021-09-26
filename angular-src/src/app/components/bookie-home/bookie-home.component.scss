@@ -1,0 +1,149 @@
+hr {
+  background: white;
+}
+
+.red-text {
+  color: #ff1361 !important;
+}
+
+.darker-text {
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 3px 2.5px 8px #272727;
+}
+
+.logout-btn {
+  float: right;
+  z-index: 100;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  > div {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-bottom: 5px;
+
+    button {
+      margin-bottom: 17px;
+    }
+  }
+}
+
+.fab-toggler {
+  float: right;
+  z-index: 100;
+}
+
+.bookie-btn {
+  color: #ffffff;
+  background: rgba(41, 41, 41, 1);
+  border-radius: 8px;
+  width: 100%;
+  padding: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1.5px solid #ffffff;
+}
+
+.bookie-btn i {
+  color: #ffffff;
+  margin-top: -5px;
+  margin-right: 3px;
+}
+
+.delete-bookie {
+  float: right;
+  right: 10px;
+  top: -52px;
+}
+
+.delete-bookie i {
+  margin-right: 5px;
+}
+
+.delete-bookie:hover i {
+  color: #3bff18;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.collections .mat-button {
+  padding: 8px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.payments .mat-button {
+  margin-top: 15px;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.red-dot {
+  margin: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-flex;
+  background: #ff1245;
+}
+
+.green-dot {
+  margin: 10px;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  border-radius: 50%;
+  border: 1px solid #1f1f1f;
+  background: #f5f5f5;
+}
+
+.inline-text {
+  margin-left: 2px;
+  margin-top: 3px;
+  color: #1d1d1d;
+  display: inline-flex;
+}
+
+.view-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  z-index: 999;
+  position: fixed;
+  bottom: 21px;
+  right: 21px;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-shadow: 0 3px 5px 2px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0 3px 5px 2px #ccc; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0 3px 5px 2px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.view-button i {
+  color: #2483ff;
+  font-size: 18px;
+  margin-top: -3px;
+}
+
+.view-button:hover i {
+  color: #ff2264;
+}

@@ -1,0 +1,237 @@
+<div class="container-fluid" *ngIf="businessPageToggled && !collectionsPageToggled">
+    <div id="fab-dismiss" *ngIf="fabTogglerState==='active'" (click)="onToggleFab()">
+    </div>
+    <div class="fab-container">
+        <button mat-fab class="fab-toggler" color="secondary" (click)="onToggleFab()">
+            <i class="material-icons" [@fabToggler]="{value: fabTogglerState}">add</i>
+        </button>
+        <div *ngIf="buttonsToggled" [@speedDialStagger]="buttonsToggled">
+
+            <button (click)="showDialog(view_collections, true)" mat-mini-fab class="fab-secondary" color="warn">
+                <i class="material-icons">attach_money</i>
+            </button>
+
+            <button (click)="goToApprovedPayments()" mat-mini-fab class="fab-secondary" color="warn">
+                <i class="material-icons">visibility</i>
+            </button>
+
+            <button (click)="showDialog(add_payment, false)" mat-mini-fab class="fab-secondary" color="warn">
+                <i class="material-icons">post_add</i>
+            </button>
+            <button (click)="showDialog(assign_bookie, false)" mat-mini-fab class="fab-secondary" color="warn">
+                <i class="material-icons">person_add</i>
+            </button>
+        </div>
+    </div>
+
+    <ng-template #view_collections>
+        <h1 mat-dialog-title>{{business.name}} Approved Payments</h1>
+        <hr>
+        <div class="remove-business-body" mat-dialog-content>
+            <div class="" *ngIf="!collections.length">
+                <p class="h6 dim-text text-center">No payments have been collected yet.</p>
+            </div>
+            <div *ngIf="collections.length" class="">
+                <table class="table table-dark table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Collected By</th>
+                            <th scope="col">Collected / Paid Amount</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [ngClass]="{'text-danger': c.typeOfPayment === 'negative' }" class="font-weight-bolder"
+                            *ngFor="let c of collections">
+                            <td>{{c.name}}</td>
+                            <td>{{c.bookieName}}</td>
+                            <td>{{c.collectedAmount}}</td>
+                            <td>{{c.balance}}</td>
+                            <td>{{c.collectionDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="float-right" mat-dialog-actions>
+            <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+        </div>
+    </ng-template>
+
+    <div class="text-center bookies">
+        <p class="h4 font-weight-bolder title darker-text">Collectors</p>
+        <div class="p-3"></div>
+        <div *ngIf="businessBookies.length == 0">
+            <p class="h5 darker-text">No collectors have been added.</p>
+        </div>
+        <button mat-button (click)="showDialog(view_bookie, false)" class="bookie-btn btn bookie-class"
+            *ngFor='let x of businessBookies'>
+            {{x.name}}
+
+            <ng-template #remove_bookie>
+                <h1 mat-dialog-title>Remove Collector</h1>
+                <hr>
+                <div class="remove-business-body" mat-dialog-content>
+                    <p class="h4">{{x.name}} from {{business.name}}</p>
+                </div>
+                <hr>
+                <div class="float-right" mat-dialog-actions>
+                    <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+                    <button mat-button class="btn btn-danger btn-lg font-weight-bolder" (click)="deleteBookie(x)"
+                        cdkFocusInitial>Confirm</button>
+                </div>
+            </ng-template>
+
+            <ng-template #view_bookie>
+                <h1 mat-dialog-title>View Collector Info</h1>
+                <hr>
+                <div class="remove-business-body" mat-dialog-content>
+                    <p class="h4">Name: {{x.name}}</p>
+                    <p class="h4">Username: {{x.username}}</p>
+                    <p class="h4">Mobile: {{x.mobile}}</p>
+                </div>
+                <hr>
+                <div class="float-right" mat-dialog-actions>
+                    <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+                </div>
+            </ng-template>
+
+            <span mat-button (click)="showDialog(remove_bookie, false)" class="delete-bookie btn font-weight-bolder"><i
+                    class="fa fa-trash"></i></span>
+        </button>
+    </div>
+    <hr>
+
+    <ng-template #add_payment>
+        <h1 mat-dialog-title>Add Payment to {{business.name}}</h1>
+        <hr>
+        <div class="add-bookie-body" mat-dialog-content>
+            <form [formGroup]="addPaymentForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Name" require="true"
+                        formControlName="name" required>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" type="number" placeholder="Enter Amount" require="true"
+                        formControlName="amount" required>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" type="number" placeholder="Enter Contact" require="true"
+                        formControlName="contact" required>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" matInput type="text" placeholder="Enter Address" require="true"
+                        formControlName="address" required>
+                </div>
+
+                <mat-radio-group formControlName="typeOfPayment" aria-label="Select an option">
+                    <mat-radio-button value="positive">Get Payment</mat-radio-button>
+                    <mat-radio-button value="negative">Give Payment</mat-radio-button>
+                </mat-radio-group>
+
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Enter Special Notes" require="true"
+                        formControlName="notes">
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="float-right" mat-dialog-actions>
+            <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+            <button [disabled]="!addPaymentForm.valid" mat-button class="btn btn-primary btn-lg font-weight-bolder"
+                (click)="addPayment()" cdkFocusInitial>Submit</button>
+        </div>
+    </ng-template>
+
+    <ng-template #assign_bookie>
+        <h1 mat-dialog-title>Assign Collector to {{business.name}}</h1>
+        <hr>
+        <div class="add-bookie-body" mat-dialog-content>
+            <form [formGroup]="assingBookieForm">
+                <mat-form-field>
+                    <mat-label>Select Collector</mat-label>
+                    <mat-select (selectionChange)="bookieChanged()" formControlName="name">
+                        <mat-option *ngFor="let bookie of bookiesToBeAdded" [value]="bookie.name">
+                            {{bookie.name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!assingBookieForm.controls['name'].value">Required Field
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </div>
+        <hr>
+        <div class="float-right" mat-dialog-actions>
+            <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+            <button [disabled]="!assingBookieForm.valid" mat-button class="btn btn-primary btn-lg font-weight-bolder"
+                (click)="confirmAddBookie()" cdkFocusInitial>Submit</button>
+        </div>
+    </ng-template>
+
+    <p class="h4 font-weight-bolder title text-center darker-text">Payments</p>
+    <div class="p-3"></div>
+
+    <div *ngIf="payments.length" class="information">
+        <div class="green-dot"></div>
+        <p class="h5 inline-text golden">Collect Payment</p>
+        <div class="red-dot"></div>
+        <p class="h5 inline-text golden">Payback</p>
+    </div>
+
+    <div *ngIf="payments.length == 0">
+        <p class="h5 text-center darker-text">No payments have been added.</p>
+    </div>
+    <button [ngClass]="{'btn': payment.typeOfPayment === 'positive', 'red-text':payment.typeOfPayment === 'negative' }"
+        mat-button (click)="showDialog(view_payment, false)" class="bookie-btn btn bookie-class"
+        *ngFor='let payment of payments'>
+        {{payment.name}}: {{payment.amount}}
+
+        <span mat-button (click)="showDialog(remove_payment, false)" class="delete-bookie btn font-weight-bolder"><i
+                class="fa fa-trash"></i></span>
+
+        <ng-template #remove_payment>
+            <h1 mat-dialog-title>Remove Payment</h1>
+            <hr>
+            <div class="remove-business-body" mat-dialog-content>
+                <p class="h4">Name: {{payment.name}}</p>
+                <p class="h4">Amount: {{payment.amount}}</p>
+            </div>
+            <hr>
+            <div class="float-right" mat-dialog-actions>
+                <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+                <button mat-button class="btn btn-danger btn-lg font-weight-bolder" (click)="deletePayment(payment)"
+                    cdkFocusInitial>Confirm</button>
+            </div>
+        </ng-template>
+
+        <ng-template #view_payment>
+            <h1 mat-dialog-title>View Payment Info</h1>
+            <hr>
+            <div class="remove-business-body" mat-dialog-content>
+                <p class="h5"><b>Name: </b>{{payment.name}}</p>
+                <hr>
+                <p class="h5"><b>Amount: </b>{{payment.amount}}</p>
+                <hr>
+                <p class="h5"><b>Address: </b>{{payment.address}}</p>
+                <hr>
+                <p class="h5"><b>Contact: </b>{{payment.contact}}</p>
+                <div *ngIf="payment.notes">
+                    <hr>
+                    <p class="h5"><b>Special Notes: </b>{{payment.notes}}</p>
+                </div>
+                <hr>
+                <p class="h5"><b>Date Added: </b>{{payment.date}}</p>
+            </div>
+            <hr>
+            <div class="float-right" mat-dialog-actions>
+                <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+            </div>
+        </ng-template>
+    </button>
+</div>
+
+<app-collections></app-collections>

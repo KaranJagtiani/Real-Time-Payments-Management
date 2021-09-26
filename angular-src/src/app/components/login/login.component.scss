@@ -1,0 +1,115 @@
+  .below-nav {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background: #1d1d1d;
+  }
+
+  input {
+    outline: none;
+    border: none;
+  }
+  
+  button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+
+  .login100-form {
+    width: 40%;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+  
+  .wrap-input100 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+  
+  .input100 {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 30px;
+  }
+  
+  .login100-form-btn button{
+    font-size: 17px;
+    line-height: 1.5;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #5d90ff;
+  }
+  
+  @media (max-width: 992px) {
+    .login100-form {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .login100-form {
+      width: 85%;
+    }
+  }
+  
+  .invalidCred {
+    font-size: 17px;
+    font-weight: 500;
+    color: #e40000;
+  }
+  
+  .formEmpty {
+    font-size: 17px;
+    font-weight: 500;
+    color: #e40000;
+  }
+  
+  .center {
+    text-align: center;
+  }
+
+  .header {
+    padding: 20px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  
+  .my_container{
+    width: 100%;
+    
+  }
+  
+  .login_form{
+    width: 60%;
+    padding: 40px;
+    margin-top: -40px;
+  }
+
+  @media only screen and(max-width: 320px){
+    .login_form{
+      margin-top: -60px!important;
+    }
+  }

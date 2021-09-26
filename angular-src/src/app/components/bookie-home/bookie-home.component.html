@@ -1,0 +1,125 @@
+<app-loader></app-loader>
+<div class="text-center p-2">
+    <div class="logout-btn">
+        <button mat-fab class="fab-toggler" color="warn" (click)="logoutButtonClicked()">
+            <i class="material-icons">logout</i>
+        </button>
+    </div>
+    <p class="h3 text-white">Collector Page</p>
+    <p class="h4 text-white">Welcome {{name}}</p>
+</div>
+<hr>
+<div class="fab-container">
+    <button mat-fab class="fab-toggler" color="secondary" (click)="showDialog(view_collections, true)">
+        <i class="material-icons">attach_money</i>
+    </button>
+</div>
+<ng-template #view_collections>
+    <h1 mat-dialog-title>View Collections</h1>
+    <hr>
+    <div class="remove-business-body" mat-dialog-content>
+        <div class="" *ngIf="!collections.length">
+            <p class="h6 dim-text text-center">No payments have been collected yet.</p>
+        </div>
+        <div *ngIf="collections.length" class="">
+            <table class="table table-dark table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Business Name</th>
+                        <th scope="col">Collected Amount</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr [ngClass]="{'text-danger': c.typeOfPayment === 'negative' }" class="font-weight-bolder"
+                        *ngFor="let c of collections">
+                        <td>{{c.name}}</td>
+                        <td>{{c.businessName}}</td>
+                        <td>{{c.collectedAmount}}</td>
+                        <td>{{c.balance}}</td>
+                        <td>{{c.collectionDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="float-right" mat-dialog-actions>
+        <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+    </div>
+</ng-template>
+<div *ngIf="payments.length == 0">
+    <p class="h6 text-center text-white">You have not been added to any businesses.</p>
+</div>
+<div *ngIf="payments.length" class="information">
+    <div class="green-dot"></div>
+    <p class="h5 inline-text text-white">Collect Payment</p>
+    <div class="red-dot"></div>
+    <p class="h5 inline-text text-white">Payback</p>
+</div>
+<div class="container-fluid" *ngFor="let payment of payments">
+    <p class="h4 text-center text-white">{{payment.name}} Collections</p>
+    <div class="p-2"></div>
+    <div *ngIf="payment.payments.length == 0">
+        <p class="h6 dim-text text-center text-white">No payments have been added.</p>
+    </div>
+    <div class="payments" *ngFor='let x of payment.payments'>
+        <button [ngClass]="{'btn': x.typeOfPayment === 'positive', 'red-text':x.typeOfPayment === 'negative' }"
+            mat-button (click)="showDialog(view_payment, false)" class="bookie-btn btn bookie-class">
+            {{x.name}}, {{x.amount}}
+            <ng-template #view_payment>
+                <h1 *ngIf="x.typeOfPayment === 'positive'" mat-dialog-title>
+                    Collect Payment
+                </h1>
+                <h1 *ngIf="x.typeOfPayment === 'negative'" mat-dialog-title>
+                    Payback
+                </h1>
+                <hr>
+
+                <p *ngIf="balanceNegative" class="h5 text-danger"><b>Amount cannot be greater than amount to be
+                        collected.</b></p>
+
+                <div *ngIf="balanceNegative" class="p-2"></div>
+
+                <form [formGroup]="addCollectionForm">
+                    <mat-form-field>
+                        <mat-label>Amount </mat-label>
+                        <input (keyup)="amountChanged(x.amount)" matInput type="text" placeholder="Enter Amount"
+                            require="true" formControlName="amount">
+                        <mat-error *ngIf="!addCollectionForm.controls['amount'].value">Required Field
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+                <div class="p-2"></div>
+                <div class="remove-business-body" mat-dialog-content>
+                    <p class="h5"><b>Name: </b>{{x.name}}</p>
+                    <hr>
+                    <p *ngIf="!balanceNegative" class="h5"><b>Balance:
+                        </b>{{x.amount - addCollectionForm.controls['amount'].value}}</p>
+                    <hr>
+                    <p class="h5"><b>Amount: </b>{{x.amount}}</p>
+                    <hr>
+                    <p class="h5"><b>Address: </b>{{x.address}}</p>
+                    <hr>
+                    <p class="h5"><b>Contact: </b>{{x.contact}}</p>
+                    <div *ngIf="x.notes">
+                        <hr>
+                        <p class="h5"><b>Special Notes: </b>{{x.notes}}</p>
+                    </div>
+                    <hr>
+                    <p class="h5"><b>Date Added: </b>{{x.date}}</p>
+
+                </div>
+                <hr>
+                <div class="float-right" mat-dialog-actions>
+                    <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+                    <button [disabled]="!addCollectionForm.valid" mat-button
+                        class="btn btn-primary btn-lg font-weight-bolder" (click)="submitCollection(x)"
+                        cdkFocusInitial>Submit</button>
+                </div>
+            </ng-template>
+        </button>
+    </div>
+    <hr>
+</div>

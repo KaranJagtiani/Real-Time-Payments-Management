@@ -1,0 +1,74 @@
+<div class="container-fluid" *ngIf="!businessPageToggled && collectionsPageToggled">
+
+    <div class="all-good" *ngIf="collections.length == 0">
+        <div class="p-3"></div>
+
+        <p class="h5 dim-text text-center golden">We are all good <i class="fa fa-thumbs-up"></i></p>
+    </div>
+
+    <div class="p-3"></div>
+
+    <button [ngClass]="{'btn': payment.typeOfPayment === 'positive', 'red-text':payment.typeOfPayment === 'negative' }"
+        mat-button (click)="showDialog(view_payment)" class="bookie-btn btn bookie-class"
+        *ngFor='let payment of collections'>
+        {{payment.name}}: {{payment.collectedAmount}}
+
+        <ng-template #view_payment>
+            <h1 mat-dialog-title>View Payment Info</h1>
+            <hr>
+            <div class="remove-business-body" mat-dialog-content>
+                <p class="h5"><b>Name: </b>{{payment.name}}</p>
+                <hr>
+                <p class="h5"><b>Address: </b>{{payment.address}}</p>
+                <hr>
+                <p class="h5"><b>Contact: </b>{{payment.contact}}</p>
+                <hr>
+                <p class="h5"><b>Collected By: </b>{{payment.bookieName}}</p>
+                <hr>
+                <p class="h5"><b>Original Amount: </b>{{payment.originalAmount}}</p>
+                <hr>
+                <p class="h5"><b>Collected Amount: </b>{{payment.collectedAmount}}</p>
+                <hr>
+                <p class="h5"><b>Balance: </b>{{payment.balance}}</p>
+                <div *ngIf="payment.notes">
+                    <hr>
+                    <p class="h5"><b>Special Notes: </b>{{payment.notes}}</p>
+                </div>
+                <hr>
+                <p class="h5"><b>Date Added: </b>{{payment.originalDate}}</p>
+                <hr>
+                <p class="h5"><b>Date Collected: </b>{{payment.collectionDate}}</p>
+            </div>
+            <hr>
+            <div class="float-right" mat-dialog-actions>
+                <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+            </div>
+        </ng-template>
+
+        <ng-template #approve_payment>
+            <h1 mat-dialog-title>Approve Payment</h1>
+            <hr>
+            <div class="remove-business-body" mat-dialog-content>
+                <p class="h5"><b>Name: </b>{{payment.name}}</p>
+                <hr>
+                <p class="h5"><b>Original Amount: </b>{{payment.originalAmount}}</p>
+                <hr>
+                <p class="h5"><b>Collected Amount: </b>{{payment.collectedAmount}}</p>
+                <hr>
+                <p class="h5"><b>Balance: </b>{{payment.balance}}</p>
+                <hr>
+                <p class="h5"><b>Collected Amount: </b>{{payment.collectedAmount}}</p>
+            </div>
+            <hr>
+            <div class="float-right" mat-dialog-actions>
+                <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Close</button>
+                <button mat-button class="btn btn-success btn-lg font-weight-bolder" (click)="approvePayment(payment)"
+                    cdkFocusInitial>Confirm</button>
+            </div>
+        </ng-template>
+
+        <span mat-button (click)="showDialog(approve_payment)" class="delete-bookie btn font-weight-bolder"><i
+                class="material-icons">check</i></span>
+
+    </button>
+</div>

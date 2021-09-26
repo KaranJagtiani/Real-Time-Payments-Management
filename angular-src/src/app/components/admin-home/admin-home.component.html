@@ -1,0 +1,139 @@
+<app-loader></app-loader>
+
+<div id="fab-dismiss" *ngIf="fabTogglerState==='active'" (click)="onToggleFab()">
+</div>
+
+<div class="text-center p-2">
+    <div class="logout-btn2">
+        <button mat-fab class="fab-toggler" color="warn" (click)="logoutButtonClicked()">
+            <i class="material-icons">logout</i>
+        </button>
+    </div>
+    <div *ngIf="!businessPageToggled && !collectionsPageToggled">
+        <p class="h3 text-white">Admin Page</p>
+        <p class="h4 text-white">Welcome {{name}}</p>
+    </div>
+
+    <div *ngIf="businessPageToggled && !collectionsPageToggled">
+        <div class="back-btn">
+            <button mat-fab class="fab-toggler" color="secondary" (click)="backButton()">
+                <i class="material-icons">arrow_back</i>
+            </button>
+        </div>
+        <p class="h3 text-white">Business Page</p>
+        <p class="h4 text-white">{{business.name}}</p>
+    </div>
+
+    <div *ngIf="!businessPageToggled && collectionsPageToggled">
+        <div class="back-btn">
+            <button mat-fab color="secondary" (click)="backButtonCollections()">
+                <i class="material-icons">arrow_back</i>
+            </button>
+        </div>
+        <p class="h3 text-white">Collections</p>
+        <p class="h4 text-white">{{business.name}}</p>
+    </div>
+
+    <hr>
+</div>
+
+<div *ngIf="!businessPageToggled && !collectionsPageToggled" class="">
+
+    <div class="fab-container">
+        <button mat-fab class="fab-toggler" color="secondary" (click)="onToggleFab()">
+            <i class="material-icons" [@fabToggler]="{value: fabTogglerState}">add</i> <!-- Animation here -->
+        </button>
+        <div *ngIf="buttonsToggled" [@speedDialStagger]="buttonsToggled">
+            <button (click)="showeDialog(add_business)" mat-mini-fab class="fab-secondary" color="warn">
+                <i class="material-icons">post_add</i>
+            </button>
+            <button (click)="showeDialog(add_bookie)" mat-mini-fab class="fab-secondary" color="warn">
+                <i class="material-icons">person_add</i>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="!businesses.length" class="text-center p-4 container-fluid">
+        <p class="h5 darker-text">No businesses have been added.</p>
+    </div>
+
+    <div class="text-center p-2 container-fluid">
+        <div class="p-3" *ngFor="let business of businesses">
+            <button (click)="businessClickedFunc(business)" mat-button class="btn business-btn">
+                {{business.name}}
+            </button>
+            <button mat-button (click)="showeDialog(remove_business)" class="delete-business btn font-weight-bolder"><i
+                    class="fa fa-trash"></i></button>
+
+            <ng-template #remove_business>
+                <h1 mat-dialog-title>Remove Business</h1>
+                <hr>
+                <div class="remove-business-body" mat-dialog-content>
+                    <p class="h4">{{business.name}}</p>
+                </div>
+                <hr>
+                <div class="float-right" mat-dialog-actions>
+                    <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+                    <button mat-button class="btn btn-danger btn-lg font-weight-bolder"
+                        (click)="deleteBusiness(business)" cdkFocusInitial>Confirm</button>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+
+    <ng-template #add_business>
+        <h1 mat-dialog-title>Create New Business</h1>
+        <hr>
+        <div class="add-bookie-body" mat-dialog-content>
+            <form [formGroup]="addBusinessForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Name" require="true"
+                        formControlName="name" required>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="float-right" mat-dialog-actions>
+            <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+            <button [disabled]="!addBusinessForm.valid" mat-button class="btn btn-primary btn-lg font-weight-bolder"
+                (click)="submitBusiness()" cdkFocusInitial>Submit</button>
+        </div>
+    </ng-template>
+
+    <ng-template #add_bookie>
+        <h1 mat-dialog-title>Create Collector Account</h1>
+        <hr>
+        <div class="add-bookie-body" mat-dialog-content>
+            <form [formGroup]="addBookieForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Name" require="true"
+                        formControlName="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Username" require="true"
+                        formControlName="username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Enter Password" require="true"
+                        formControlName="password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Re-Enter Password" require="true"
+                        formControlName="confPassword" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Enter Contact" require="true"
+                        formControlName="mobile" required>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="float-right" mat-dialog-actions>
+            <button mat-button class="btn btn-lg font-weight-bolder" mat-dialog-close>Cancel</button>
+            <button [disabled]="!addBookieForm.valid" mat-button class="btn btn-primary btn-lg font-weight-bolder"
+                (click)="submitBookie()" cdkFocusInitial>Submit</button>
+        </div>
+    </ng-template>
+</div>
+<app-business></app-business>

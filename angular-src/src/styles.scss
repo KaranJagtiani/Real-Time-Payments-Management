@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #181a1b !important;
+}
+
+.lines {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+}
+
+.loading p {
+  color: #1f1f1f;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.preloader-1 .line {
+  width: 3px;
+  height: 30px;
+  background: #1f1f1f;
+  margin: 0 5px;
+  display: inline-block;
+  animation: opacity-1 1000ms infinite ease-in-out;
+}
+
+.preloader-1 .line-1,
+.preloader-2 .line-1 {
+  animation-delay: 800ms;
+}
+.preloader-1 .line-2,
+.preloader-2 .line-2 {
+  animation-delay: 600ms;
+}
+.preloader-1 .line-3,
+.preloader-2 .line-3 {
+  animation-delay: 400ms;
+}
+.preloader-1 .line-4,
+.preloader-2 .line-4 {
+  animation-delay: 200ms;
+}
+.preloader-1 .line-6,
+.preloader-2 .line-6 {
+  animation-delay: 200ms;
+}
+.preloader-1 .line-7,
+.preloader-2 .line-7 {
+  animation-delay: 400ms;
+}
+.preloader-1 .line-8,
+.preloader-2 .line-8 {
+  animation-delay: 600ms;
+}
+.preloader-1 .line-9,
+.preloader-2 .line-9 {
+  animation-delay: 800ms;
+}
+
+@keyframes opacity-1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity-2 {
+  0% {
+    opacity: 1;
+    height: 21px;
+  }
+  50% {
+    opacity: 0;
+    height: 18px;
+  }
+  100% {
+    opacity: 1;
+    height: 21px;
+  }
+}

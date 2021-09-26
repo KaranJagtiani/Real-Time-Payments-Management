@@ -1,0 +1,25 @@
+<app-loader></app-loader>
+<div class="my_container">
+    <div class="login100-form">
+        <p class="h3 text-center header">Sign In</p>
+        <form (submit)="login()">
+            <div class="wrap-input100">
+                <input class="input100" id="username" type="text" name="username" [(ngModel)]="username"
+                    placeholder="Username" autocapitalize=off>
+            </div>
+            <div class="wrap-input100">
+                <input class="input100" id="password" type="password" name="password" [(ngModel)]="password"
+                    placeholder="Password">
+            </div>
+            <div class="p-2 center justify-content-center">
+                <div class="invalidCred" *ngIf="invalidCred">{{response}}</div>
+                <div class="formEmpty" *ngIf="formEmpty">Both fields are required.</div>
+            </div>
+            <div class="login100-form-btn">
+                <button type="submit" class="btn">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

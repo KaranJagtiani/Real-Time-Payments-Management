@@ -1,0 +1,64 @@
+hr {
+  background: white;
+}
+
+.golden {
+  color: #ffffff !important;
+  text-shadow: 2px 1.5px 8px #ffb133;
+}
+
+.red-text {
+  color: #ff1361 !important;
+}
+
+.back-btn {
+  float: left;
+  z-index: 100;
+}
+
+.bookie-btn {
+  color: #ffffff;
+  background: rgba(41, 41, 41, 1);
+  border-radius: 8px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-shadow: 0 3px 5px 2px #ffb133; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0 3px 5px 2px #ffb133; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0 3px 5px 2px #ffb133; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.bookie-btn i {
+  color: #ffffff;
+  margin-top: -5px;
+  margin-right: 3px;
+}
+
+.delete-bookie {
+  float: right;
+  right: 10px;
+  top: -47px;
+}
+
+.delete-bookie:hover i {
+  color: #18ff52;
+}
+
+.inline {
+  display: inline;
+}
+
+.all-good {
+  display: inline;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.all-good i {
+  margin-bottom: -10px !important;
+}

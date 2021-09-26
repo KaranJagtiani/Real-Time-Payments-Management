@@ -1,0 +1,189 @@
+hr {
+  background: white;
+}
+
+.golden {
+  color: #ffffff !important;
+  text-shadow: 2px 1.5px 8px #ffb133;
+}
+
+.red-text {
+  color: #ff1361 !important;
+}
+
+.darker-text {
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 3px 2.5px 8px #272727;
+}
+
+.assign-button {
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.bookie-btn {
+  color: #ffffff;
+  background: rgba(41, 41, 41, 1);
+  border-radius: 8px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1.5px solid #ffffff;
+}
+
+.bookie-btn i {
+  color: #ffffff;
+  margin-top: -5px;
+  margin-right: 3px;
+}
+
+.delete-bookie {
+  float: right;
+  right: 10px;
+  top: -47px;
+}
+
+.delete-bookie:hover i {
+  color: #ff1852;
+}
+
+.dim-text {
+  color: #5a5a5a;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.collections .mat-button {
+  padding: 8px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mat-radio-button {
+  margin-left: 5px;
+  text-align: center;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.red-dot {
+  margin: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-flex;
+  background: #ff1245;
+}
+
+.green-dot {
+  margin: 10px;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  border-radius: 50%;
+  border: 1px solid #1f1f1f;
+  background: #f5f5f5;
+}
+
+.inline-text {
+  margin-left: 2px;
+  margin-top: 3px;
+  color: #1d1d1d;
+  display: inline-flex;
+}
+
+.back-btn {
+  float: left;
+  z-index: 100;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  > div {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-bottom: 5px;
+
+    button {
+      margin-bottom: 17px;
+    }
+  }
+}
+
+.fab-toggler {
+  float: right;
+  z-index: 100;
+}
+
+#fab-dismiss {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.title {
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 1.2px;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.red-dot {
+  margin: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-flex;
+  background: #ff1245;
+}
+
+.green-dot {
+  margin: 10px;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  border-radius: 50%;
+  border: 1px solid #1f1f1f;
+  background: #f5f5f5;
+}
+
+.inline-text {
+  margin-left: 2px;
+  margin-top: 3px;
+  color: #1d1d1d;
+  display: inline-flex;
+}
